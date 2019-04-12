@@ -3,11 +3,19 @@ import "./calculator.css"
 import Display from "./Display"
 import Key from "./Key"
 
-class CalulatorBody extends Component {
+class CalculatorBody extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      keyValue: null,
+      displayValue: null,
+    }
   }
+
+  calculateAnswer = () => {
+    console.log("hi")
+  }
+
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -41,4 +49,4 @@ class CalulatorBody extends Component {
   }
 }
 
-export default CalulatorBody
+export default CalculatorBody
