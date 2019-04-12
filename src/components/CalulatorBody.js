@@ -7,13 +7,12 @@ class CalculatorBody extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyNameValue: null,
-      displayValue: null,
+      keyNameValue: 0,
+      displayValue: 0,
     }
   }
 
   calculateAnswer = keyName => {
-    // console.log("you pressed the ", keyName)
     this.setState({
       keyNameValue: keyName,
     })

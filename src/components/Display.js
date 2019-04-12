@@ -1,7 +1,15 @@
 import React from "react"
+// needs to take the keyNameValue
 
 const Display = props => {
-  return <div className="display">{props.keyNameValue}</div>
+  console.log(typeof props.keyNameValue)
+  return (
+    <div className="display">
+      {typeof props.keyNameValue === "number"
+        ? props.keyNameValue
+        : "not a number"}
+    </div>
+  )
 }
 
 export default Display
