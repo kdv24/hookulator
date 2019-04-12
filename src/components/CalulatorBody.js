@@ -13,19 +13,23 @@ class CalculatorBody extends Component {
   }
 
   calculateAnswer = keyName => {
-    console.log("you pressed the ", keyName)
+    // console.log("you pressed the ", keyName)
+    this.setState({
+      keyNameValue: keyName,
+    })
   }
 
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="calculator">
-          <Display />
+          <Display keyNameValue={this.state.keyNameValue} />
           <div className="key-grid">
             <Key
               className="keys"
               keyName={"AC"}
               calculateAnswer={this.calculateAnswer}
+              keyNameValue={this.state.keyNameValue}
             />
             <Key
               className="keys"
