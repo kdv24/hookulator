@@ -7,13 +7,13 @@ class CalculatorBody extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyValue: null,
+      keyNameValue: null,
       displayValue: null,
     }
   }
 
-  calculateAnswer = () => {
-    console.log("hi")
+  calculateAnswer = keyName => {
+    console.log("you pressed the ", keyName)
   }
 
   render() {
@@ -22,26 +22,106 @@ class CalculatorBody extends Component {
         <div className="calculator">
           <Display />
           <div className="key-grid">
-            <Key className="keys" number={"AC"} />
-            <Key className="keys" number={"+/-"} />
-            <Key className="keys" number={"%"} />
-            <Key className="keys" number={"/"} />
-            <Key className="keys" number={7} />
-            <Key className="keys" number={8} />
-            <Key className="keys" number={9} />
-            <Key className="keys" number={"x"} />
-            <Key className="keys" number={4} />
-            <Key className="keys" number={5} />
-            <Key className="keys" number={6} />
-            <Key className="keys" number={"-"} />
-            <Key className="keys" number={1} />
-            <Key className="keys" number={2} />
-            <Key className="keys" number={3} />
-            <Key className="keys" number={"+"} />
-            <Key className="keys" number={0} />
-            <Key className="keys" number={"."} />
-            <Key className="keys" number={"="} />
-            <Key className="keys" number={"="} />
+            <Key
+              className="keys"
+              keyName={"AC"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"+/-"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"%"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"/"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={7}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={8}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={9}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"x"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={4}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={5}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={6}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"-"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={1}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={2}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={3}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"+"}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={0}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"."}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"="}
+              calculateAnswer={this.calculateAnswer}
+            />
+            <Key
+              className="keys"
+              keyName={"=="}
+              calculateAnswer={this.calculateAnswer}
+            />
           </div>
         </div>
       </div>
