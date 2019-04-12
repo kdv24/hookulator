@@ -9,20 +9,32 @@ class CalculatorBody extends Component {
     this.state = {
       keyNameValue: 0,
       displayValue: 0,
+      keyNameFunction: "AC",
     }
   }
 
   calculateAnswer = keyName => {
-    this.setState({
-      keyNameValue: keyName,
-    })
+    if (typeof keyName === "number") {
+      this.setState({
+        keyNameValue: keyName,
+      })
+      console.log("number")
+    } else {
+      this.setState({
+        keyNameFunction: keyName,
+      })
+      console.log("function")
+    }
   }
 
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="calculator">
-          <Display keyNameValue={this.state.keyNameValue} />
+          <Display
+            keyNameValue={this.state.keyNameValue}
+            keyNameFunction={this.state.keyNameFunction}
+          />
           <div className="key-grid">
             <Key
               className="keys"
