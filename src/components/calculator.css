@@ -49,6 +49,10 @@ a:hover {
   margin-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    "keys"
+    "equalButton";
   grid-gap: 1px;
 }
 
@@ -63,6 +67,15 @@ a:hover {
   font-size: 1.5em;
   border-radius: 10px;
   box-shadow: 1px 1px;
+  display: grid;
+  grid-area: "keys";
+}
+
+.equalButton {
+  display: grid;
+  background-color: orange;
+  grid-area: "equalButton";
+  grid-template-columns: 2fr auto;
 }
 
 @media only screen and (max-width: 480px) {

@@ -10,21 +10,53 @@ class CalculatorBody extends Component {
       keyNameValue: 0,
       displayValue: 0,
       keyNameFunction: "AC",
+      answer: 0,
     }
   }
 
-  calculateAnswer = keyName => {
+  checkKeyType = keyName => {
     if (typeof keyName === "number") {
       this.setState({
         keyNameValue: keyName,
       })
-      console.log("number")
     } else {
       this.setState({
         keyNameFunction: keyName,
       })
-      console.log("function")
     }
+    this.calculateAnswer()
+  }
+
+  calculateAnswer = () => {
+    let keyNameValue = this.state.keyNameValue
+    let keyNameFunction = this.state.keyNameFunction
+    let displayValue = this.state.displayValue
+    let answer = this.state.answer
+    switch (keyNameFunction) {
+      case "+":
+        displayValue = displayValue + keyNameValue
+        break
+      case "-":
+        displayValue = displayValue - keyNameValue
+        break
+      case "x":
+        displayValue = displayValue * keyNameValue
+        break
+      case "/":
+        displayValue = displayValue / keyNameValue
+        break
+      default:
+        displayValue = answer
+    }
+    this.setState({
+      displayValue: displayValue,
+    })
+    console.log(
+      { keyNameValue },
+      { keyNameFunction },
+      { answer },
+      { displayValue }
+    )
   }
 
   render() {
@@ -34,108 +66,105 @@ class CalculatorBody extends Component {
           <Display
             keyNameValue={this.state.keyNameValue}
             keyNameFunction={this.state.keyNameFunction}
+            answer={this.state.answer}
           />
           <div className="key-grid">
             <Key
               className="keys"
               keyName={"AC"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
               keyNameValue={this.state.keyNameValue}
             />
             <Key
               className="keys"
               keyName={"+/-"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"%"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"/"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={7}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={8}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={9}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"x"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={4}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={5}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={6}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"-"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={1}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={2}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={3}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"+"}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={0}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
               className="keys"
               keyName={"."}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
             <Key
-              className="keys"
+              className="equalButton"
+              style={{ color: "red" }}
               keyName={"="}
-              calculateAnswer={this.calculateAnswer}
-            />
-            <Key
-              className="keys"
-              keyName={"=="}
-              calculateAnswer={this.calculateAnswer}
+              checkKeyType={this.checkKeyType}
             />
           </div>
         </div>

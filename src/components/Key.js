@@ -1,7 +1,7 @@
 import React from "react"
 const Key = props => {
   return (
-    <div className="keys" onClick={() => props.calculateAnswer(props.keyName)}>
+    <div className="keys" onClick={() => props.checkKeyType(props.keyName)}>
       {props.keyName}
     </div>
   )
