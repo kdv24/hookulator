@@ -7,73 +7,83 @@ class CalculatorBody extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyNameValue: 0,
+      keysPressed: 0,
       displayValue: 0,
-      keyNameFunction: "AC",
+      keyNameFunction: undefined,
       answer: 0,
     }
   }
 
   checkKeyType = keyName => {
     if (typeof keyName === "number") {
+      let keysPressed = this.state.keysPressed
       this.setState({
-        keyNameValue: keyName,
+        keysPressed:
+          this.state.keysPressed === 0 ? keyName : `${keysPressed}${keyName}`,
       })
+      this.setState({ displayValue: this.state.keysPressed })
     } else {
       this.setState({
         keyNameFunction: keyName,
       })
     }
-    this.calculateAnswer()
   }
 
-  calculateAnswer = () => {
-    let keyNameValue = this.state.keyNameValue
-    let keyNameFunction = this.state.keyNameFunction
-    let displayValue = this.state.displayValue
-    let answer = this.state.answer
-    switch (keyNameFunction) {
-      case "+":
-        displayValue = displayValue + keyNameValue
-        break
-      case "-":
-        displayValue = displayValue - keyNameValue
-        break
-      case "x":
-        displayValue = displayValue * keyNameValue
-        break
-      case "/":
-        displayValue = displayValue / keyNameValue
-        break
-      default:
-        displayValue = answer
-    }
-    this.setState({
-      displayValue: displayValue,
-    })
-    console.log(
-      { keyNameValue },
-      { keyNameFunction },
-      { answer },
-      { displayValue }
-    )
-  }
+  // calculateAnswer = keyNameFunction => {
+  //   let keysPressed = parseInt(this.state.keysPressed)
+  //   console.log({ keyNameFunction })
+  //   let displayValue = this.state.displayValue
+  //   let answer = this.state.answer
+  //   switch (keyNameFunction) {
+  //     case "+":
+  //       displayValue = +keysPressed
+  //       {
+  //         console.log("displayvalue in +", displayValue)
+  //       }
+  //       // this.setState({ displayValue: displayValue })
+  //       break
+  //     case "-":
+  //       displayValue = displayValue - keysPressed
+  //       break
+  //     case "x":
+  //       displayValue = displayValue * keysPressed
+  //       break
+  //     case "/":
+  //       displayValue = displayValue / keysPressed
+  //       break
+  //     case "AC":
+  //       displayValue = 0
+  //       keysPressed = 0
+  //       break
+  //     default:
+  //       displayValue = "hi"
+  //   }
+  //   this.setState({
+  //     displayValue: displayValue,
+  //     keysPressed: keysPressed,
+  //   })
+  //   console.log(
+  //     { keysPressed },
+  //     { keyNameFunction },
+  //     { answer },
+  //     { displayValue }
+  //   )
+  // }
 
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="calculator">
           <Display
-            keyNameValue={this.state.keyNameValue}
+            keysPressed={this.state.keysPressed}
             keyNameFunction={this.state.keyNameFunction}
-            answer={this.state.answer}
+            displayValue={this.state.displayValue}
           />
           <div className="key-grid">
             <Key
               className="keys"
               keyName={"AC"}
               checkKeyType={this.checkKeyType}
-              keyNameValue={this.state.keyNameValue}
             />
             <Key
               className="keys"
@@ -94,16 +104,19 @@ class CalculatorBody extends Component {
               className="keys"
               keyName={7}
               checkKeyType={this.checkKeyType}
+              keysPressed={this.state.keysPressed}
             />
             <Key
               className="keys"
               keyName={8}
               checkKeyType={this.checkKeyType}
+              keysPressed={this.state.keysPressed}
             />
             <Key
               className="keys"
               keyName={9}
               checkKeyType={this.checkKeyType}
+              keysPressed={this.state.keysPressed}
             />
             <Key
               className="keys"
