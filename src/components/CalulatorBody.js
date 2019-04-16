@@ -8,7 +8,7 @@ class CalculatorBody extends Component {
     super(props)
     this.state = {
       keysPressed: 0,
-      displayValue: 0,
+      displayNumber: 0,
       keyNameFunction: undefined,
       answer: 0,
     }
@@ -21,54 +21,50 @@ class CalculatorBody extends Component {
         keysPressed:
           this.state.keysPressed === 0 ? keyName : `${keysPressed}${keyName}`,
       })
-      this.setState({ displayValue: this.state.keysPressed })
     } else {
       this.setState({
         keyNameFunction: keyName,
+        displayNumber: this.state.keysPressed,
+        keysPressed: 0,
       })
+      this.calculateAnswer(keyName)
     }
   }
 
-  // calculateAnswer = keyNameFunction => {
-  //   let keysPressed = parseInt(this.state.keysPressed)
-  //   console.log({ keyNameFunction })
-  //   let displayValue = this.state.displayValue
-  //   let answer = this.state.answer
-  //   switch (keyNameFunction) {
-  //     case "+":
-  //       displayValue = +keysPressed
-  //       {
-  //         console.log("displayvalue in +", displayValue)
-  //       }
-  //       // this.setState({ displayValue: displayValue })
-  //       break
-  //     case "-":
-  //       displayValue = displayValue - keysPressed
-  //       break
-  //     case "x":
-  //       displayValue = displayValue * keysPressed
-  //       break
-  //     case "/":
-  //       displayValue = displayValue / keysPressed
-  //       break
-  //     case "AC":
-  //       displayValue = 0
-  //       keysPressed = 0
-  //       break
-  //     default:
-  //       displayValue = "hi"
-  //   }
-  //   this.setState({
-  //     displayValue: displayValue,
-  //     keysPressed: keysPressed,
-  //   })
-  //   console.log(
-  //     { keysPressed },
-  //     { keyNameFunction },
-  //     { answer },
-  //     { displayValue }
-  //   )
-  // }
+  calculateAnswer = keyName => {
+    let keysPressed = parseInt(this.state.keysPressed)
+    let displayNumber = this.state.displayNumber
+    switch (keyName) {
+      case "+":
+        displayNumber = displayNumber + keysPressed
+        this.setState({ displayNumber: displayNumber })
+        break
+      case "-":
+        displayNumber = displayNumber - keysPressed
+        break
+      case "x":
+        displayNumber = displayNumber * keysPressed
+        break
+      case "/":
+        displayNumber = displayNumber / keysPressed
+        break
+      case "AC":
+        displayNumber = 0
+        keysPressed = 0
+        break
+      default:
+        displayNumber = "hi"
+    }
+    this.setState({
+      displayNumber: displayNumber,
+      keyNameFunction: keyName,
+    })
+    console.log(
+      "end of calculate; display number & function: ",
+      displayNumber,
+      this.state.keyNameFunction
+    )
+  }
 
   render() {
     return (
@@ -77,7 +73,7 @@ class CalculatorBody extends Component {
           <Display
             keysPressed={this.state.keysPressed}
             keyNameFunction={this.state.keyNameFunction}
-            displayValue={this.state.displayValue}
+            displayNumber={this.state.displayNumber}
           />
           <div className="key-grid">
             <Key
