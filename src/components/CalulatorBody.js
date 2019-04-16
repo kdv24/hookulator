@@ -51,9 +51,17 @@ class CalculatorBody extends Component {
           displayNumber = displayNumber - keysPressed
           break
         case "x":
+          this.setState({
+            displayNumber: displayNumber,
+            keyNameFunciton: keyName,
+          })
           displayNumber = displayNumber * keysPressed
           break
         case "/":
+          this.setState({
+            displayNumber: displayNumber,
+            keyNameFunciton: keyName,
+          })
           displayNumber = displayNumber / keysPressed
           break
         case "AC":
