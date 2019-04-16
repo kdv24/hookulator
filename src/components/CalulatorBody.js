@@ -23,9 +23,7 @@ class CalculatorBody extends Component {
       })
     } else {
       this.setState({
-        keyNameFunction: keyName,
-        displayNumber: this.state.keysPressed,
-        keysPressed: 0,
+        displayNumber: this.setState.keysPressed,
       })
       this.calculateAnswer(keyName)
     }
@@ -34,36 +32,43 @@ class CalculatorBody extends Component {
   calculateAnswer = keyName => {
     let keysPressed = parseInt(this.state.keysPressed)
     let displayNumber = this.state.displayNumber
-    switch (keyName) {
-      case "+":
-        displayNumber = displayNumber + keysPressed
-        this.setState({ displayNumber: displayNumber })
-        break
-      case "-":
-        displayNumber = displayNumber - keysPressed
-        break
-      case "x":
-        displayNumber = displayNumber * keysPressed
-        break
-      case "/":
-        displayNumber = displayNumber / keysPressed
-        break
-      case "AC":
-        displayNumber = 0
-        keysPressed = 0
-        break
-      default:
-        displayNumber = "hi"
+    if (this.state.keyNameFunction === "undefined") {
+      this.setState({ displayNumber: keysPressed })
+    } else {
+      switch (this.state.keyNameFunction) {
+        case "+":
+          this.setState({
+            displayNumber: displayNumber,
+            keyNameFunciton: keyName,
+          })
+          displayNumber = displayNumber + keysPressed
+          break
+        case "-":
+          this.setState({
+            displayNumber: displayNumber,
+            keyNameFunciton: keyName,
+          })
+          displayNumber = displayNumber - keysPressed
+          break
+        case "x":
+          displayNumber = displayNumber * keysPressed
+          break
+        case "/":
+          displayNumber = displayNumber / keysPressed
+          break
+        case "AC":
+          displayNumber = 0
+          keysPressed = 0
+          break
+        default:
+          displayNumber = keysPressed
+      }
     }
     this.setState({
       displayNumber: displayNumber,
       keyNameFunction: keyName,
+      keysPressed: 0,
     })
-    console.log(
-      "end of calculate; display number & function: ",
-      displayNumber,
-      this.state.keyNameFunction
-    )
   }
 
   render() {
