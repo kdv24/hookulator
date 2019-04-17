@@ -39,28 +39,28 @@ class CalculatorBody extends Component {
         case "+":
           this.setState({
             displayNumber: displayNumber,
-            keyNameFunciton: keyName,
+            keyNameFunction: keyName,
           })
           displayNumber = displayNumber + keysPressed
           break
         case "-":
           this.setState({
             displayNumber: displayNumber,
-            keyNameFunciton: keyName,
+            keyNameFunction: keyName,
           })
           displayNumber = displayNumber - keysPressed
           break
         case "x":
           this.setState({
             displayNumber: displayNumber,
-            keyNameFunciton: keyName,
+            keyNameFunction: keyName,
           })
           displayNumber = displayNumber * keysPressed
           break
         case "/":
           this.setState({
             displayNumber: displayNumber,
-            keyNameFunciton: keyName,
+            keyNameFunction: keyName,
           })
           displayNumber = displayNumber / keysPressed
           break
