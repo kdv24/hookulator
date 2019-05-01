@@ -1,97 +1,32 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import "./calculator.css"
-import Display from "./Display"
-import Key from "./Key"
+// import Display from "./Display"
+import Key from "./hookKey"
 
-class CalculatorBody extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      keysPressed: 0,
-      displayNumber: 0,
-      keyNameFunction: undefined,
-      answer: 0,
-    }
-  }
+const CalculatorBody = () => {
+  const [keyPressed, setKeyPressed] = useState(0)
+  const [displayNumber, setDisplayNumber] = useState(0)
+  const [keyNameFunction, setKeyNameFunction] = useState("")
+  const [answer, setAnswer] = useState(0)
 
-  checkKeyType = keyName => {
-    if (typeof keyName === "number") {
-      let keysPressed = this.state.keysPressed
-      this.setState({
-        keysPressed:
-          this.state.keysPressed === 0 ? keyName : `${keysPressed}${keyName}`,
-      })
+  const handleKeyPress = keyPressed => {
+    if (keyPressed) {
+      setKeyPressed(keyPressed)
     } else {
-      this.setState({
-        displayNumber: this.setState.keysPressed,
-      })
-      this.calculateAnswer(keyName)
+      console.log("hmmm: ", keyPressed, setKeyPressed)
     }
-  }
-
-  calculateAnswer = keyName => {
-    let keysPressed = parseInt(this.state.keysPressed)
-    let displayNumber = this.state.displayNumber
-    if (this.state.keyNameFunction === "undefined") {
-      this.setState({ displayNumber: keysPressed })
-    } else {
-      switch (this.state.keyNameFunction) {
-        case "+":
-          this.setState({
-            displayNumber: displayNumber,
-            keyNameFunction: keyName,
-          })
-          displayNumber = displayNumber + keysPressed
-          break
-        case "-":
-          this.setState({
-            displayNumber: displayNumber,
-            keyNameFunction: keyName,
-          })
-          displayNumber = displayNumber - keysPressed
-          break
-        case "x":
-          this.setState({
-            displayNumber: displayNumber,
-            keyNameFunction: keyName,
-          })
-          displayNumber = displayNumber * keysPressed
-          break
-        case "/":
-          this.setState({
-            displayNumber: displayNumber,
-            keyNameFunction: keyName,
-          })
-          displayNumber = displayNumber / keysPressed
-          break
-        case "AC":
-          displayNumber = 0
-          keysPressed = 0
-          break
-        default:
-          displayNumber = keysPressed
-      }
-    }
-    this.setState({
-      displayNumber: displayNumber,
-      keyNameFunction: keyName,
-      keysPressed: 0,
-    })
-  }
-
-  render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="calculator">
-          <Display
-            keysPressed={this.state.keysPressed}
-            keyNameFunction={this.state.keyNameFunction}
-            displayNumber={this.state.displayNumber}
-          />
+          {/* <Display
+          keysPressed={this.state.keysPressed}
+          keyNameFunction={this.state.keyNameFunction}
+          displayNumber={this.state.displayNumber}
+        /> */}
           <div className="key-grid">
             <Key
               className="keys"
-              keyName={"AC"}
+              keyPressed={"AC"}
               checkKeyType={this.checkKeyType}
             />
             <Key
@@ -194,5 +129,69 @@ class CalculatorBody extends Component {
     )
   }
 }
-
 export default CalculatorBody
+
+//   checkKeyType = keyName => {
+//     if (typeof keyName === "number") {
+//       let keysPressed = this.state.keysPressed
+//       this.setState({
+//         keysPressed:
+//           this.state.keysPressed === 0 ? keyName : `${keysPressed}${keyName}`,
+//       })
+//     } else {
+//       this.setState({
+//         displayNumber: this.setState.keysPressed,
+//       })
+//       this.calculateAnswer(keyName)
+//     }
+//   }
+
+// calculateAnswer = keyName => {
+//   let keysPressed = parseInt(this.state.keysPressed)
+//   let displayNumber = this.state.displayNumber
+//   if (this.state.keyNameFunction === "undefined") {
+//     this.setState({ displayNumber: keysPressed })
+//   } else {
+//     switch (this.state.keyNameFunction) {
+//       case "+":
+//         this.setState({
+//           displayNumber: displayNumber,
+//           keyNameFunction: keyName,
+//         })
+//         displayNumber = displayNumber + keysPressed
+//         break
+//       case "-":
+//         this.setState({
+//           displayNumber: displayNumber,
+//           keyNameFunction: keyName,
+//         })
+//         displayNumber = displayNumber - keysPressed
+//         break
+//       case "x":
+//         this.setState({
+//           displayNumber: displayNumber,
+//           keyNameFunction: keyName,
+//         })
+//         displayNumber = displayNumber * keysPressed
+//         break
+//       case "/":
+//         this.setState({
+//           displayNumber: displayNumber,
+//           keyNameFunction: keyName,
+//         })
+//         displayNumber = displayNumber / keysPressed
+//         break
+//       case "AC":
+//         displayNumber = 0
+//         keysPressed = 0
+//         break
+//       default:
+//         displayNumber = keysPressed
+//     }
+//   }
+//   this.setState({
+//     displayNumber: displayNumber,
+//     keyNameFunction: keyName,
+//     keysPressed: 0,
+//   })
+// }
