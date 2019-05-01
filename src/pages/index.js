@@ -1,10 +1,10 @@
 import React from "react"
 import Layout from "../components/layout"
-import CalulatorBody from "../components/CalulatorBody"
+import CalculatorBody from "../components/CalculatorBody"
 
 const IndexPage = () => (
   <Layout>
-    <CalulatorBody />
+    <CalculatorBody />
   </Layout>
 )
 
